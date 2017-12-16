@@ -10,6 +10,13 @@ function randomPage() {
   ) + 1
 }
 
+function normalizeCanIHazJoke(canIHazJoke) {
+  return {
+    canIHazId: canIHazJoke.id,
+    text: canIHazJoke.joke,
+  }
+}
+
 class NewJokes extends Component {
   constructor(props) {
     super(props)
@@ -38,7 +45,7 @@ class NewJokes extends Component {
     )
       .then(res => {
         this.setState({
-          jokes: res.data && res.data.results,
+          jokes: res.data && res.data.results.map(j => normalizeCanIHazJoke(j)),
         })
       })
       .catch(err => {

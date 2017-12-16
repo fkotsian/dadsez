@@ -7,8 +7,8 @@ class Joke extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      canIHazId: props.id || props.canIHazId,
-      text: props.joke || props.text,
+      canIHazId: props.canIHazId,
+      text: props.text,
       votes: props.votes, // undefined OK - will fetch
     }
   }
