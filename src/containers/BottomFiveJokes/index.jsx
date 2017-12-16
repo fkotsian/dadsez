@@ -67,7 +67,7 @@ class BottomFiveJokes extends Component {
             ?
               this.state.jokes
                 .map(j => (
-                  <JokeLoader key={j.id} {...j} />
+                  <JokeLoader key={j.can_i_haz_id} {...j} />
                 ))
             :
               ''

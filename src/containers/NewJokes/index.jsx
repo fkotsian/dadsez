@@ -75,7 +75,7 @@ class NewJokes extends Component {
         }
         {
           this.state.jokes.map(j => (
-            <Joke key={j.id} {...j} />
+            <Joke key={j.canIHazId} {...j} />
           ))
         }
       </div>
