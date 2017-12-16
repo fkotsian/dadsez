@@ -1,12 +1,8 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
-import Joke from '../../containers/Joke'
-import axios from 'axios'
+import JokeLoader from '../../containers/JokeLoader'
 import * as Consts from '../../constants.js'
-
-function canIHazAPIJokeUrl(canIHazId) {
-  return `${Consts.CANIHAZ_API_BASE_URL}/j/${canIHazId}`
-}
+import axios from 'axios'
 
 class TopFiveJokes extends Component {
   constructor(props) {
@@ -14,11 +10,10 @@ class TopFiveJokes extends Component {
     this.state = {
       error: null,
       loading: false,
-      jokes: {},
+      jokes: [],
     }
 
     this.requestTopFiveJokes = this.requestTopFiveJokes.bind(this)
-    this.fetchJokeInfo = this.fetchJokeInfo.bind(this)
   }
 
   componentDidMount() {
@@ -34,13 +29,8 @@ class TopFiveJokes extends Component {
       Consts.DADSEZ_API_JOKES_TOP_FIVE
     )
       .then(res => {
-        return res.data.joke_ids
-      })
-      .then(jokeIds => {
-        return this.fetchJokeInfo(jokeIds)
-      })
-      .then(_ => {
         this.setState({
+          jokes: res.data.jokes,
           loading: false,
         })
       })
@@ -50,24 +40,6 @@ class TopFiveJokes extends Component {
           loading: false,
         })
       })
-  }
-
-  fetchJokeInfo(jokeIds) {
-    jokeIds.map(jId => {
-      // request joke from API and add it to the list
-      axios.get(
-        canIHazAPIJokeUrl(jId),
-        {
-          headers: Consts.CANIHAZ_API_HEADERS,
-        }
-      )
-        .then(res => {
-          let newJoke = res.data
-          this.setState({
-            jokes: [].concat(this.state.jokes).concat(newJoke),
-          })
-        })
-    })
   }
 
   render() {
@@ -95,7 +67,7 @@ class TopFiveJokes extends Component {
             ?
               this.state.jokes
                 .map(j => (
-                  <Joke key={j.id} {...j} />
+                  <JokeLoader key={j.id} {...j} />
                 ))
             :
               ''

@@ -7,15 +7,16 @@ class Joke extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      canIHazId: props.id,
-      text: props.joke,
+      canIHazId: props.id || props.canIHazId,
+      text: props.joke || props.text,
+      votes: props.votes, // undefined OK - will fetch
     }
   }
 
   render() {
     return (
       <div>
-        <JokeButtons canIHazId={this.state.canIHazId} />
+        <JokeButtons canIHazId={this.state.canIHazId} votes={this.state.votes} />
         <JokeText text={this.state.text} />
       </div>
     )

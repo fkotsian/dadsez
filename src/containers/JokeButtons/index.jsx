@@ -8,14 +8,16 @@ class JokeButtons extends Component {
     super(props)
     this.state = {
       canIHazId: props.canIHazId,
-      votes: 0,
+      votes: props.votes,
       loading: false,
     }
   }
 
   componentDidMount() {
-    // fetch vote count from API
-    this.registerJokeAndGetVoteCount(this.state.canIHazId)
+    // fetch vote count from API if not given
+    if (!this.state.votes) {
+      this.registerJokeAndGetVoteCount(this.state.canIHazId)
+    }
   }
 
   vote(points) {
@@ -34,6 +36,7 @@ class JokeButtons extends Component {
         })
       })
       .catch(err => {
+        // purposefully log - no other feedback is shown to the user
         console.log("ERROR VOTING!")
         console.log(err)
       })
@@ -63,7 +66,6 @@ class JokeButtons extends Component {
         })
       })
   }
-
 
   render() {
     return (
