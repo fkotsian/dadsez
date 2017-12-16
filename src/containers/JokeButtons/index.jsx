@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import axios from 'axios'
 import * as Consts from '../../constants.js'
+import {CircularProgress} from 'material-ui/Progress'
 
 class JokeButtons extends Component {
   constructor(props) {
@@ -76,7 +77,7 @@ class JokeButtons extends Component {
         {
           this.state.loading
             ?
-              'loading!'
+              <CircularProgress />
             :
               <span>Votes: {this.state.votes}</span>
         }
