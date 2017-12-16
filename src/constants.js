@@ -5,7 +5,7 @@ export const CANIHAZ_API_HEADERS = {
 }
 export const CANIHAZ_API_SEARCH_PAGE_COUNT = 18
 
-export const DADSEZ_API_BASE = 'http://localhost:3000'
+export const DADSEZ_API_BASE = 'https://dadsez-api.herokuapp.com'
 export const DADSEZ_API_JOKES_BASE = `${DADSEZ_API_BASE}/jokes`
 export const DADSEZ_API_JOKES_TOP_FIVE = `${DADSEZ_API_BASE}/jokes/top-five`
 export const DADSEZ_API_JOKES_BOTTOM_FIVE = `${DADSEZ_API_BASE}/jokes/bottom-five`
